@@ -29,7 +29,8 @@ weather_df = weather_df[['location.name', 'current.temp_c', 'current.feelslike_c
 weather_df.columns = [col.replace('current.', '').replace(
     'location.', '') for col in weather_df.columns]
 
-weather_df = weather_df.rename(columns={'name': 'City', 'temp_c': 'Temperature (Celsius)', 'feelslike_c': 'Feels Like (Celsius)', 'wind_kph': 'Wind Speed (km/h)', 'wind_dir': 'Wind Direction', 'pressure_mb': 'Pressure (mb)', 'humidity': 'Humidity (%)', 'cloud': 'Cloud Cover (%)', 'uv': 'UV Index'})
+weather_df = weather_df.rename(columns={'name': 'City', 'temp_c': 'Temperature (Celsius)', 'feelslike_c': 'Feels Like (Celsius)', 'wind_kph': 'Wind Speed (km/h)',
+                               'wind_dir': 'Wind Direction', 'pressure_mb': 'Pressure (mb)', 'humidity': 'Humidity (%)', 'cloud': 'Cloud Cover (%)', 'uv': 'UV Index'})
 
 # Read the template file
 with open('api-project/templates/weather_template.html', 'r') as f:
@@ -39,7 +40,7 @@ with open('api-project/templates/weather_template.html', 'r') as f:
 html = template.replace('{{ table }}', weather_df.to_html(index=False))
 
 # Save the HTML to a file
-with open('weather_report.html', 'w') as f:
+with open('api-project/weather_report.html', 'w') as f:
     f.write(html)
 
-print("Weather report has been saved as 'weather_report.html'")
+print("Weather report has been saved as 'api-project/weather_report.html'")
